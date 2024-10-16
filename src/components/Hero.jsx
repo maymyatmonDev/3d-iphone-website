@@ -2,8 +2,10 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="w-full py-10 screen-max-width flex justify-center items-center">
-      <h1 className="text-3xl tex-bold">3D IPHONE WEBSITE</h1>
+    <div className="w-full bg-black nav-height relative">
+      <h1 className="h-5/6 w-full flex-center flex-1">
+        <p className="hero-title">iphone 15 Pro</p>
+      </h1>
     </div>
   );
 };
