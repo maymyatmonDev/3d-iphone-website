@@ -26,11 +26,11 @@ const VideoCarousel = () => {
 
   useGSAP(() => {
     // slider animation to move the video out of the screen and bring the next video in
-    // gsap.to("#slider", {
-    //   transform: `translateX(${-100 * videoId}%)`,
-    //   duration: 2,
-    //   ease: "power2.inOut", // show visualizer https://gsap.com/docs/v3/Eases
-    // });
+    gsap.to("#slider", {
+      transform: `translateX(${-100 * videoId}%)`,
+      duration: 2,
+      ease: "power2.inOut", // show visualizer https://gsap.com/docs/v3/Eases
+    });
 
     // video animation to play the video when it is in the view
     gsap.to("#video", {
@@ -52,35 +52,59 @@ const VideoCarousel = () => {
     let currentProgress = 0;
     let span = videoSpanRef.current;
 
-    // if (span[videoId]) {
-    //   // animation to move the indicator
-    //   let anim = gsap.to(span[videoId], {
-    //     onUpdate: () => {},
+    if (span[videoId]) {
+      // animation to move the indicator
+      let anim = gsap.to(span[videoId], {
+        onUpdate: () => {
+          const progress = Math.ceil(anim.progress() * 100);
+          if (progress !== currentProgress) {
+            currentProgress = progress;
+            gsap.to(videoDivRef.current[videoId], {
+              width:
+                window.innerWidth < 760 || window.innerWidth < 1200
+                  ? "10vw"
+                  : "4vw",
+            });
+            gsap.to(videoSpanRef.current[videoId], {
+              width: `${currentProgress}%`,
+              backgroundColor: "white",
+            });
+          }
+        },
 
-    //     // when the video is ended, replace the progress bar with the indicator and change the background color
-    //     onComplete: () => {},
-    //   });
+        // when the video is ended, replace the progress bar with the indicator and change the background color
+        onComplete: () => {
+          if (isPlaying) {
+            gsap.to(videoDivRef.current[videoId], {
+              width: "12px",
+            });
+            gsap.to(span[videoId], {
+              backgroundColor: "#afafaf",
+            });
+          }
+        },
+      });
 
-    //   if (videoId == 0) {
-    //     anim.restart();
-    //   }
+      if (videoId == 0) {
+        anim.restart();
+      }
 
-    //   // update the progress bar
-    //   const animUpdate = () => {
-    //     anim.progress(
-    //       videoRef.current[videoId].currentTime /
-    //         hightlightsSlides[videoId].videoDuration
-    //     );
-    //   };
+      // update the progress bar
+      const animUpdate = () => {
+        anim.progress(
+          videoRef.current[videoId].currentTime /
+            hightlightsSlides[videoId].videoDuration
+        );
+      };
 
-    //   if (isPlaying) {
-    //     // ticker to update the progress bar
-    //     gsap.ticker.add(animUpdate);
-    //   } else {
-    //     // remove the ticker when the video is paused (progress bar is stopped)
-    //     gsap.ticker.remove(animUpdate);
-    //   }
-    // }
+      if (isPlaying) {
+        // ticker to update the progress bar
+        gsap.ticker.add(animUpdate);
+      } else {
+        // remove the ticker when the video is paused (progress bar is stopped)
+        gsap.ticker.remove(animUpdate);
+      }
+    }
   }, [videoId, startPlay]);
 
   useEffect(() => {
@@ -133,17 +157,17 @@ const VideoCarousel = () => {
                 <video
                   id="video"
                   playsInline={true}
-                  // className={`${
-                  //   list.id === 2 && "translate-x-44"
-                  // } pointer-events-none`}
+                  className={`${
+                    list.id === 2 && "translate-x-44"
+                  } pointer-events-none`}
                   preload="auto"
                   muted
                   ref={(el) => (videoRef.current[i] = el)}
-                  // onEnded={() =>
-                  //   i !== 3
-                  //     ? handleProcess("video-end", i)
-                  //     : handleProcess("video-last")
-                  // }
+                  onEnded={() =>
+                    i !== 3
+                      ? handleProcess("video-end", i)
+                      : handleProcess("video-last")
+                  }
                   onPlay={() =>
                     setVideo((pre) => ({ ...pre, isPlaying: true }))
                   }
