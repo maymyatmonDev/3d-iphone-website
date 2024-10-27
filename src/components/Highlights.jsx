@@ -2,21 +2,34 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { rightImg, watchImg } from "../utils";
 import VideoCarousel from "./VideoCarousel";
+import { animateWithGsap } from "../utils/animations";
 
 const Highlights = () => {
   useGSAP(() => {
-    gsap.to("#title", {
+    animateWithGsap("#title", {
       opacity: 1,
       y: 0,
       ease: "power1.inOut",
     });
-    gsap.to(".link", {
+    // gsap.to("#title", {
+    //   opacity: 1,
+    //   y: 0,
+    //   ease: "power1.inOut",
+    // });
+    animateWithGsap(".link", {
       opacity: 1,
       y: 0,
       ease: "power1.inOut",
       duration: 1,
-      stagger: 0.25, //stagger makes animation one by one
+      stagger: 0.25,
     });
+    // gsap.to(".link", {
+    //   opacity: 1,
+    //   y: 0,
+    //   ease: "power1.inOut",
+    //   duration: 1,
+    //   stagger: 0.25, //stagger makes animation one by one
+    // });
   }, []);
 
   return (
