@@ -54,6 +54,7 @@ canvas {
     @apply w-10 h-10 text-sm flex justify-center items-center bg-white text-black rounded-full transition-all;
   }
 
+  /* 1 padding unit = 0.25 rem = 4px (1rem = 16px) */
   .common-padding {
     @apply sm:py-32 py-20 sm:px-10 px-5;
   }

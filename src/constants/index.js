@@ -51,8 +51,8 @@ export const models = [
   {
     id: 1,
     title: "iPhone 15 Pro in Natural Titanium",
-    color: ["#8F8A81", "#ffe7b9", "#6f6c64"],
-    img: yellowImg,
+    color: ["#8F8A81", "#ffe7b9", "#6f6c64"], //back color of the model (just taking the color[0] for now)
+    img: yellowImg, //front screen image texture
   },
   {
     id: 2,
