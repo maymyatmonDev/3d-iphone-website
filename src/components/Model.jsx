@@ -7,7 +7,7 @@ import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
 import { models, sizes } from "../constants";
-import { animateWithGsapTimeline } from "../utils/animations";
+import { animateWithGsap, animateWithGsapTimeline } from "../utils/animations";
 
 const Model = () => {
   const [size, setSize] = useState("small");
@@ -48,16 +48,15 @@ const Model = () => {
   }, [size]);
 
   useGSAP(() => {
-    gsap.to("#heading", {
+    animateWithGsap("#heading", {
       opacity: 1,
       y: 0,
-      // duration: 0.5,
       ease: "power1.inOut",
     });
   }, []);
 
   return (
-    <section className="common-padding">
+    <section className="common-padding overflow-hidden">
       <div className="screen-max-width">
         <h1 id="heading" className="section-heading">
           Take a closer look.

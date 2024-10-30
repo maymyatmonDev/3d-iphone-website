@@ -14,6 +14,7 @@ const ModelView = ({
   item,
   size,
 }) => {
+  const isMobile = window.innerWidth < 780;
   return (
     <View
       index={index}
@@ -33,6 +34,7 @@ const ModelView = ({
         ref={controlRef}
         enableZoom={false}
         enablePan={false}
+        enableRotate={!isMobile}
         rotateSpeed={0.4} //slow and steady
         target={new THREE.Vector3(0, 0, 0)} //construct a new vector and give 0 0 0 as XYZ to target the center of the screen
         onEnd={() => setRotationState(controlRef.current.getAzimuthalAngle())}
