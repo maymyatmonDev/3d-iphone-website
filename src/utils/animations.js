@@ -8,8 +8,8 @@ export const animateWithGsap = (target, animationProps, scrollProps) => {
     ...animationProps,
     scrollTrigger: {
       trigger: target,
-      toggleActions: "restart reverse restart reverse",
-      start: "top 95%",
+      // toggleActions: "restart reverse restart reverse",
+      start: "top 85%",
       ...scrollProps,
     },
   });
