@@ -9,6 +9,7 @@ Title: Apple iPhone 15 Pro Max Black
 import * as THREE from "three";
 import React, { useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 function Model(props) {
   const { nodes, materials } = useGLTF("/models/scene.glb");
@@ -28,6 +29,13 @@ function Model(props) {
       material[1].needsUpdate = true;
     }); //Object.entries(materials) to get the key and value pairs of material
   }, [materials, props.item]);
+
+  // Rotate the model slowly
+  useFrame(() => {
+    if (window.innerWidth < 780 && props.groupRef.current) {
+      props.groupRef.current.rotation.y += 0.01; // Adjust speed as necessary
+    }
+  });
 
   return (
     <group {...props} dispose={null}>
