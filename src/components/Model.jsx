@@ -81,7 +81,6 @@ const Model = () => {
               item={model}
               size={size}
             />
-
             {/* Canvas component from the react-fiber */}
             <Canvas
               className="w-full h-full"
