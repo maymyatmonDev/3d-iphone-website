@@ -18,6 +18,10 @@ body {
   user-select: none;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 canvas {
   touch-action: none;
 }
