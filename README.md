@@ -2,7 +2,7 @@
 An interactive clone of Apple’s iPhone 15 Pro website built with React, GSAP, and Three.js to deliver a sleek and engaging user experience.
 
 🌐 Live Demo
-View the project on Vercel - https://maydev-3d-iphone-website.vercel.app
+View the project on Vercel - https://3d-iphone-product-page.vercel.app
 
 🚀 Features
 
